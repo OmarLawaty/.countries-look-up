@@ -7,7 +7,7 @@ export const Filters = () => {
     <Container display="flex" justifyContent="space-between" alignItems="center" paddingX="20">
       <Search />
 
-      <SelectMenu placeHolder="Search by Region" options={['none', 'africa', 'america', 'asia', 'europe', 'oceania']} />
+      <SelectMenu placeHolder="Filter by Region" options={['none', 'africa', 'america', 'asia', 'europe', 'oceania']} />
     </Container>
   );
 };

@@ -6,7 +6,7 @@ const Search = () => {
   const [value, setValue] = useState('');
 
   return (
-    <InputGroup w="30rem">
+    <InputGroup w="30rem" bg="white">
       <InputLeftElement pointerEvents="none" minH="14" left="4" w="12">
         <SearchIcon color="gray.900" w="full" fontSize="1.2rem" />
       </InputLeftElement>

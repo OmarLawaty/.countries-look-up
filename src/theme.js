@@ -1,5 +1,14 @@
 import { extendTheme } from '@chakra-ui/react';
 
+// Global Values
+const globalStyles = {
+  global: {
+    body: {
+      backgroundColor: 'gray.100'
+    }
+  }
+};
+
 // Base Values
 const colors = {
   white: 'hsl(0, 0%, 100%)',
@@ -27,6 +36,9 @@ const Container = {
 const config = { initialColorMode: 'light', useSystemColorMode: false };
 
 export default extendTheme({
+  styles: {
+    ...globalStyles
+  },
   colors,
   fontFamily: "'Nunito Sans', sans-serif;",
   components: { Container },

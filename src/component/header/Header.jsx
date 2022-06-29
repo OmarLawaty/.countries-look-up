@@ -11,6 +11,7 @@ export const Header = () => {
       shadow="md"
       p="1rem 4rem 1.5rem"
       mb="12"
+      bg="white"
     >
       <Heading as="h1" fontSize="24" pl="5">
         Where in the world?

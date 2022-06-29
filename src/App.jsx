@@ -1,16 +1,17 @@
+import { Box } from '@chakra-ui/react';
 import React from 'react';
 
 import { CountriesList, Filters, Header } from './component';
 
 const App = () => {
   return (
-    <div>
+    <Box>
       <Header />
 
       <Filters />
 
       <CountriesList />
-    </div>
+    </Box>
   );
 };
 
