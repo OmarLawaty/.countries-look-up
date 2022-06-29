@@ -1,16 +1,20 @@
-import { Box } from '@chakra-ui/react';
 import React from 'react';
+import { Box } from '@chakra-ui/react';
+import { Navigate, Route, Routes } from 'react-router-dom';
 
-import { CountriesList, Filters, Header } from './component';
+import { Home } from './pages';
+import { Header } from './components';
 
 const App = () => {
   return (
     <Box>
       <Header />
 
-      <Filters />
+      <Routes>
+        <Route path="/" element={<Navigate to="/countries" />} />
 
-      <CountriesList />
+        <Route path="/countries" element={<Home />} />
+      </Routes>
     </Box>
   );
 };
