@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Box, Container, Flex, Grid, GridItem } from '@chakra-ui/react';
+import { Box, Container, Flex, Grid, GridItem, SimpleGrid } from '@chakra-ui/react';
 
 import { Search, SelectMenu } from '../components/filters';
 import { getAllCountries } from '../apis/countries';
@@ -19,8 +19,8 @@ export const Home = () => {
   }, []);
 
   return (
-    <Container>
-      <Flex justifyContent="space-between">
+    <Container as="section">
+      <Flex justifyContent="space-between" mb="12">
         <Search query={query} setQuery={setQuery} />
 
         <SelectMenu
@@ -32,18 +32,17 @@ export const Home = () => {
         />
       </Flex>
 
-      <Grid templateColumns="repeat(minmax(30rem,1fr), 1fr)" gap={6}>
+      <SimpleGrid as="section" minChildWidth="250px" gap="20">
         {countries.length !== 0 ? (
           countries.slice(0, 100).map(country => (
-            <>
-              {/* <CountryCard country={country} uniqueKey={country.ccn3} /> */}
-              <h2 key={country.altSpellings[0]}>Hi</h2>
-            </>
+            <Box key={country.ccn3}>
+              <CountryCard country={country} />
+            </Box>
           ))
         ) : (
-          <Box>There is no countries</Box>
+          <Box margin="0 auto">There is no countries</Box>
         )}
-      </Grid>
+      </SimpleGrid>
     </Container>
   );
 };

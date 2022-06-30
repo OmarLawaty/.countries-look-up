@@ -2,7 +2,7 @@ import React from 'react';
 import { Box } from '@chakra-ui/react';
 import { Navigate, Route, Routes } from 'react-router-dom';
 
-import { Home } from './pages';
+import { CountryDetails, Home } from './pages';
 import { Header } from './components';
 
 const App = () => {
@@ -15,6 +15,7 @@ const App = () => {
           <Route path="/" element={<Navigate to="/countries" />} />
 
           <Route path="/countries" element={<Home />} />
+          <Route path="/countries/:code" element={<CountryDetails />} />
         </Routes>
       </Box>
     </>

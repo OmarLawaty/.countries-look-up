@@ -28,7 +28,7 @@ const colors = {
 const Container = {
   baseStyle: {
     maxW: '8xl',
-    paddingX: '16'
+    paddingX: '20'
   }
 };
 
