@@ -7,15 +7,17 @@ import { Header } from './components';
 
 const App = () => {
   return (
-    <Box>
+    <>
       <Header />
 
-      <Routes>
-        <Route path="/" element={<Navigate to="/countries" />} />
+      <Box as="main">
+        <Routes>
+          <Route path="/" element={<Navigate to="/countries" />} />
 
-        <Route path="/countries" element={<Home />} />
-      </Routes>
-    </Box>
+          <Route path="/countries" element={<Home />} />
+        </Routes>
+      </Box>
+    </>
   );
 };
 

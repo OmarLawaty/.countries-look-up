@@ -1,3 +1,3 @@
-export { Header } from './header';
-export { Filters } from './filters';
-export { CountriesList } from './countriesList';
+export * from './header';
+export * from './filters';
+export * from './CountryCard';
