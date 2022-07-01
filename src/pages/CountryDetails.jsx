@@ -32,25 +32,79 @@ export const CountryDetails = () => {
   const borderCountryBgColor = useColorModeValue('white', 'blue.700');
 
   return (
-    <Container as="section" mt="20">
+    <Container as="section" mt={['10', null, '20']} p="0 1.75rem">
       <BackButton to="/countries/" />
-      {country.name ? (
-        <Flex mt="20" gap="24">
-          <Image src={country.flags.svg} h="auto" w="full" flex="1" objectFit="cover" />
 
-          <Box flex="1" maxW="50%" py="10">
-            <Heading as="h2" fontSize="32px" mb="8">
+      {country.name ? (
+        <Flex
+          mt={['14', null, '20']}
+          gap={['10', null, '24']}
+          flexDir={['column', null, 'row']}
+          justifyContent="space-between"
+        >
+          <Image src={country.flags.svg} w={['full', null, '35rem']} h={['14.5rem', null, '25rem']} objectFit="cover" />
+
+          <Box py={['0', null, '10']} w={['full', null, '38.5rem']}>
+            <Heading as="h2" fontSize={['22px', null, '32px']} mb={['6', null, '8']}>
               {country.name?.common}
             </Heading>
 
-            <Box display="flex" flexDir="column" flexWrap="wrap" gap="0.49rem 8.6rem" height="40" mb="14">
-              <CountryInfo country={country} detailsValuesColor={detailsValuesColor} />
+            <Box
+              display="flex"
+              flexDir={['column', null, 'row']}
+              justifyContent="space-between"
+              flexWrap="wrap"
+              gap={['12', null, '5']}
+              minH="40"
+              mb={['10', null, '16']}
+            >
+              <Box display="flex" flexDir="column" gap={['3', null, '2']} w="16.8rem">
+                <CountryInfo
+                  title="Native Name"
+                  value={Object.values(country.name.nativeName)[0].common}
+                  valueStyles={detailsValuesColor}
+                />
+                <CountryInfo title="Population" value={format(country.population)} valueStyles={detailsValuesColor} />
+                <CountryInfo title="Region" value={country.region} valueStyles={detailsValuesColor} />
+                <CountryInfo title="Sub Region" value={country.subregion} valueStyles={detailsValuesColor} />
+                <CountryInfo title="Capital" value={country.capital} valueStyles={detailsValuesColor} />
+              </Box>
+
+              <Box display="flex" flexDir="column" gap={['3', null, '2']} w="16.8rem">
+                <CountryInfo
+                  title="Top Level Domain"
+                  value={country.tld ? country.tld[0] : 'N/A'}
+                  valueStyles={detailsValuesColor}
+                />
+
+                <CountryInfo
+                  title="Currencies"
+                  value={Object.values(country.currencies)[0].name}
+                  valueStyles={detailsValuesColor}
+                />
+
+                <CountryInfo
+                  title="Languages"
+                  value={Object.values(country.languages)
+                    .map(language => language)
+                    .join(', ')}
+                  valueStyles={detailsValuesColor}
+                />
+              </Box>
             </Box>
 
-            <Box letterSpacing="wide" fontWeight="700">
+            <Box letterSpacing="tight" fontWeight="700">
               Border Countries:{' '}
               {borderCountries.length ? (
-                <Flex display="inline-flex" gap="2" letterSpacing="normal" flexWrap="wrap" ml="2">
+                <Flex
+                  display={['flex', null, 'inline-flex']}
+                  gap="2"
+                  letterSpacing="tight"
+                  flexWrap="wrap"
+                  justifyContent="flex-start"
+                  ml={['0', null, '3']}
+                  mt={['4', null, '0']}
+                >
                   {borderCountries.slice(0, 3).map(borderCountry => (
                     <Button
                       as={Link}
@@ -59,11 +113,12 @@ export const CountryDetails = () => {
                       bg={borderCountryBgColor}
                       borderRadius="base"
                       textTransform="capitalize"
-                      fontSize="sm"
+                      fontSize={['xs', null, 'sm']}
                       fontWeight="500"
                       shadow="md"
-                      py="4"
-                      px="8"
+                      h="7"
+                      px="7"
+                      letterSpacing="tighter"
                     >
                       {borderCountry.name.common}
                     </Button>
@@ -80,63 +135,15 @@ export const CountryDetails = () => {
   );
 };
 
-const CountryInfo = ({ country, detailsValuesColor }) => {
-  const countryData = [
-    {
-      name: 'Native Name',
-      value: Object.values(country.name.nativeName)[0].common
-    },
-    {
-      name: 'Population',
-      value: format(country.population)
-    },
-    {
-      name: 'Region',
-      value: country.region
-    },
-    {
-      name: 'Sub Region',
-      value: country.subregion
-    },
-    {
-      name: 'Capital',
-      value: country.capital
-    },
-    {
-      name: 'Top Level Domain',
-      value: country.tld ? country.tld[0] : 'N/A'
-    },
-    {
-      name: 'Currencies',
-      value: Object.values(country.currencies)[0].name
-    },
-    {
-      name: 'Languages',
-      value: Object.values(country.languages)
-        .map(language => language)
-        .join(', ')
-    }
-  ];
-
+const CountryInfo = ({ title, value, detailsValuesColor }) => {
   return (
     <>
-      {countryData.map(info => (
-        <Text
-          letterSpacing="wide"
-          fontWeight="700"
-          key={info.name}
-          w="56"
-          overflow="hidden"
-          textOverflow="ellipsis"
-          height="min-content"
-          whiteSpace="nowrap"
-        >
-          {info.name}
-          <Box as="span" fontWeight="500" color={detailsValuesColor} title={info.value}>
-            : {info.value}
-          </Box>
-        </Text>
-      ))}
+      <Text letterSpacing="normal" fontWeight="700" w="56" fontSize={['13px', null, 'initial']}>
+        {title}:{''} {''}
+        <Box as="span" fontWeight="500" color={detailsValuesColor} title={value}>
+          {value}
+        </Box>
+      </Text>
     </>
   );
 };

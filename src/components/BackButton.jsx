@@ -7,7 +7,7 @@ export const BackButton = ({ to }) => (
     as={Link}
     to={to}
     variant="outline"
-    w="32"
+    w={['28', null, '32']}
     shadow="lg"
     display="flex"
     gap="4"

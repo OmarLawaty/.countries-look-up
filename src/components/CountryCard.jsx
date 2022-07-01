@@ -7,7 +7,7 @@ export const CountryCard = ({ country }) => (
     as={Link}
     to={`/countries/${country.cca2.toLowerCase()}`}
     minH="10"
-    w="16.5rem"
+    w={['full', '16.5rem']}
     borderRadius="base"
     overflow="hidden"
     cursor="pointer"
