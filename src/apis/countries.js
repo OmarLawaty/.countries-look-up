@@ -1,29 +1,14 @@
 import axios from 'axios';
 
-export const getAllCountries = async () => {
-  const response = await axios.get(`https://restcountries.com/v3.1/all/`);
+const countriesApi = axios.create({ baseURL: 'https://restcountries.com/v3.1/' });
 
-  return response;
-};
+export const getAllCountries = () => countriesApi.get(`https://restcountries.com/v3.1/all/`);
 
-export const getCountriesByName = async name => {
-  const response = await axios.get(`https://restcountries.com/v3.1/name/${name}`);
+export const getOneCountryByCode = code => countriesApi.get(`https://restcountries.com/v3.1/alpha/${code}`);
 
-  return response;
-};
-
-export const getOneCountryByCode = async code => {
-  const response = await axios.get(`https://restcountries.com/v3.1/alpha/${code}`);
-
-  return response;
-};
-
-export const getCountriesByCode = async codesArr => {
-  const response = await axios.get('https://restcountries.com/v3.1/alpha/', {
+export const getCountriesByCode = codesArr =>
+  countriesApi.get('https://restcountries.com/v3.1/alpha/', {
     params: {
       codes: codesArr.join(',')
     }
   });
-
-  return response;
-};

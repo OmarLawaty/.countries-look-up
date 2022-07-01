@@ -1,4 +1,4 @@
-import { Box, Container, Heading, useColorModeValue } from '@chakra-ui/react';
+import { Container, Flex, Heading, useColorModeValue } from '@chakra-ui/react';
 import { useNavigate } from 'react-router';
 import ThemeSwitcher from './ThemeSwitcher';
 
@@ -6,14 +6,7 @@ export const Header = () => {
   let navigate = useNavigate();
 
   return (
-    <Box
-      w="full"
-      maxW="unset"
-      bg={useColorModeValue('white', 'blue.700')}
-      display="flex"
-      justifyContent="center"
-      shadow="md"
-    >
+    <Flex w="full" bg={useColorModeValue('white', 'blue.700')} justifyContent="center" shadow="md">
       <Container
         as="header"
         w="full"
@@ -21,13 +14,13 @@ export const Header = () => {
         justifyContent="space-between"
         alignItems="center"
         p={['1.2rem 0', null, '1rem 4rem 1.5rem']}
-        mx="0"
+        m="0"
       >
         <Heading
           as="h1"
           cursor="pointer"
           onClick={() => navigate('/')}
-          fontSize={['14px', null, '24']}
+          fontSize={['14px', null, '24px']}
           pl={['4', null, '5']}
           color={useColorModeValue('black', 'gray.100')}
         >
@@ -36,6 +29,6 @@ export const Header = () => {
 
         <ThemeSwitcher />
       </Container>
-    </Box>
+    </Flex>
   );
 };

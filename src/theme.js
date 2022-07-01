@@ -44,7 +44,10 @@ export default extendTheme({
     ...globalStyles
   },
   colors,
-  fontFamily: "'Nunito Sans', sans-serif;",
+  fonts: {
+    body: '"Nunito Sans", sans-serif',
+    heading: '"Nunito Sans", sans-serif'
+  },
   components: { Container },
   config
 });

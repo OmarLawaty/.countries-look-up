@@ -3,28 +3,20 @@ import { ChevronDownIcon } from '@chakra-ui/icons';
 
 export const SelectMenu = ({ options, defaultOption, placeholder = defaultOption, selected, setSelected }) => {
   return (
-    <Menu minH="100%" bg={useColorModeValue('white', 'blue.700')}>
+    <Menu minH="full" w={['12.5rem', null, '13rem']} bg={useColorModeValue('white', 'blue.700')}>
       <MenuButton
         as={Button}
         rightIcon={<ChevronDownIcon ml="6" />}
-        textTransform="capitalize"
         bg={useColorModeValue('white', 'blue.700')}
         minH={['12', null, '14']}
         w={['12.5rem', null, '13rem']}
         fontSize="sm"
-        d="flex"
-        justifyContent="space-between"
+        textTransform="capitalize"
       >
         {selected ? selected : placeholder}
       </MenuButton>
 
-      <MenuList
-        w="13rem"
-        minW="full"
-        top="0.25rem"
-        bg={useColorModeValue('white', 'blue.700')}
-        transform={['translate(16px, 243px)', null, 'translate(16px, 246px)']}
-      >
+      <MenuList top="0.25rem" bg={useColorModeValue('white', 'blue.700')} transform="translate(16px, 243px)">
         {options.map(option => (
           <SelectOption
             key={option}

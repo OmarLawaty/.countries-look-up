@@ -14,6 +14,7 @@ export const BackButton = ({ to }) => (
     bg={useColorModeValue('white', 'blue.700')}
   >
     <ArrowBackIcon />
+
     <Box as="span" fontWeight="semibold">
       Back
     </Box>

@@ -3,7 +3,7 @@ import { SearchIcon } from '@chakra-ui/icons';
 
 export const Search = ({ setQuery, query }) => (
   <InputGroup w={['full', null, '30rem']} bg={useColorModeValue('white', 'blue.700')} rounded="base">
-    <InputLeftElement pointerEvents="none" h="14" left={['5', null, '6']}>
+    <InputLeftElement pointerEvents="none" h="14" top="1/2" left="4">
       <SearchIcon color={useColorModeValue('gray.900', 'gray.100')} />
     </InputLeftElement>
 
@@ -16,7 +16,7 @@ export const Search = ({ setQuery, query }) => (
       _placeholder={{ color: useColorModeValue('gray.900', 'white') }}
       h={['12', null, '14']}
       pl="4.5rem"
-      letterSpacing={['-1.7px', null, 'tighter']}
+      letterSpacing={['-1px', null, 'tighter']}
       bg="transparent"
     />
   </InputGroup>
