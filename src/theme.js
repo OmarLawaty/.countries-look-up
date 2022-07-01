@@ -1,12 +1,15 @@
+import { mode } from '@chakra-ui/theme-tools';
 import { extendTheme } from '@chakra-ui/react';
 
 // Global Values
 const globalStyles = {
-  global: {
+  global: props => ({
     body: {
-      backgroundColor: 'gray.100'
+      backgroundColor: mode('gray.100', 'blue.800')(props),
+      pb: '10',
+      scrollbarGutter: 'stable'
     }
-  }
+  })
 };
 
 // Base Values
@@ -28,7 +31,8 @@ const colors = {
 const Container = {
   baseStyle: {
     maxW: '8xl',
-    paddingX: '20'
+    pl: '20',
+    pr: '16'
   }
 };
 
