@@ -31,8 +31,8 @@ const colors = {
 const Container = {
   baseStyle: {
     maxW: '8xl',
-    pl: '20',
-    pr: '16'
+    pl: ['4', null, '20'],
+    pr: ['4', null, '16']
   }
 };
 

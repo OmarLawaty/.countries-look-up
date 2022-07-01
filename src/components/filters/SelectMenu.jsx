@@ -9,8 +9,8 @@ export const SelectMenu = ({ options, defaultOption, placeholder = defaultOption
         rightIcon={<ChevronDownIcon ml="6" />}
         textTransform="capitalize"
         bg={useColorModeValue('white', 'blue.700')}
-        minH="14"
-        w="13rem"
+        minH={['12', null, '14']}
+        w={['12.5rem', null, '13rem']}
         fontSize="sm"
         d="flex"
         justifyContent="space-between"
@@ -18,7 +18,13 @@ export const SelectMenu = ({ options, defaultOption, placeholder = defaultOption
         {selected ? selected : placeholder}
       </MenuButton>
 
-      <MenuList w="13rem" minW="full" top="0.25rem" bg={useColorModeValue('white', 'blue.700')}>
+      <MenuList
+        w="13rem"
+        minW="full"
+        top="0.25rem"
+        bg={useColorModeValue('white', 'blue.700')}
+        transform={['translate(16px, 243px)', null, 'translate(16px, 246px)']}
+      >
         {options.map(option => (
           <SelectOption
             key={option}
@@ -37,9 +43,9 @@ const SelectOption = ({ children, isActive, onSelect }) => (
   <MenuItem
     textTransform="capitalize"
     bg={useColorModeValue(isActive ? 'gray.200' : 'transparent', isActive ? 'blue.800' : 'transparent')}
-    fontSize="sm"
+    fontSize={['11px', null, 'sm']}
     py="1"
-    px="8"
+    px={['6', null, '8']}
     _hover={{
       bg: useColorModeValue(isActive ? 'gray.200' : 'gray.100', isActive ? 'blue.800' : 'gray.500')
     }}

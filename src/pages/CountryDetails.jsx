@@ -121,10 +121,19 @@ const CountryInfo = ({ country, detailsValuesColor }) => {
   return (
     <>
       {countryData.map(info => (
-        <Text w="max-content" letterSpacing="wide" fontWeight="700" key={info.name}>
-          {info.name}:{' '}
-          <Box as="span" fontWeight="500" color={detailsValuesColor} w="min-content">
-            {info.value}
+        <Text
+          letterSpacing="wide"
+          fontWeight="700"
+          key={info.name}
+          w="56"
+          overflow="hidden"
+          textOverflow="ellipsis"
+          height="min-content"
+          whiteSpace="nowrap"
+        >
+          {info.name}
+          <Box as="span" fontWeight="500" color={detailsValuesColor} title={info.value}>
+            : {info.value}
           </Box>
         </Text>
       ))}

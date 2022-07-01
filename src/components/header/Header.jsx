@@ -14,15 +14,15 @@ export const Header = () => {
         justifyContent="space-between"
         alignItems="center"
         shadow="md"
-        p="1rem 4rem 1.5rem"
+        p={['1.2rem 0', null, '1rem 4rem 1.5rem']}
         mx="0"
       >
         <Heading
           as="h1"
           cursor="pointer"
           onClick={() => navigate('/')}
-          fontSize="24"
-          pl="5"
+          fontSize={['14px', null, '24']}
+          pl={['4', null, '5']}
           color={useColorModeValue('black', 'gray.100')}
         >
           Where in the world?
