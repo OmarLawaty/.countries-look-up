@@ -4,8 +4,14 @@ export const useFilteredCountries = (countries, { query, region }) => {
   const [filteredCountries, setFilteredCountries] = useState(countries);
 
   useEffect(() => {
-    countries.filter(country => country.region.includes(region) && country.name.common_name.includes(query));
-  }, [query, region]);
+    if (!query && !region) return setFilteredCountries(countries);
 
-  return;
+    const _countries = countries.filter(
+      country =>
+        country.region.toLowerCase().includes(region) && country.name.common.toLowerCase().includes(query.toLowerCase())
+    );
+    setFilteredCountries(_countries);
+  }, [query, region, countries]);
+
+  return filteredCountries;
 };
