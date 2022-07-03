@@ -1,21 +1,40 @@
 import { Box, Text, Button, Flex, useColorModeValue } from '@chakra-ui/react';
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { RequestHandler } from '../../components';
+import { useFetch } from '../../hooks';
 
-export const BorderCountries = ({ borderCountries }) => {
+export const BorderCountries = ({ country }) => {
   const countryButtonBg = useColorModeValue('white', 'blue.700');
 
+  const { data: borderCountries, isLoading } = useFetch(
+    `https://restcountries.com/v3.1/alpha/`,
+    {
+      codes: country.borders ? country.borders.join(',') : null
+    },
+    country.borders ? false : true
+  );
+
   return (
-    <Box letterSpacing="tight" fontWeight="700">
+    <Box fontWeight="700">
       <Text as="span">Border Countries:</Text>
 
-      <Flex display={['flex', null, 'inline-flex']} flexWrap="wrap" gap="2" ml={['0', null, '3']} mt={['4', null, '0']}>
-        {borderCountries.map(borderCountry => (
-          <CountryButton country={borderCountry} bg={countryButtonBg} key={borderCountry.cca2.toLowerCase()} />
-        ))}
-      </Flex>
+      <RequestHandler isLoading={isLoading}>
+        <Flex
+          display={['flex', null, 'inline-flex']}
+          flexWrap="wrap"
+          gap="2"
+          ml={['0', null, '3']}
+          mt={['4', null, '3']}
+        >
+          {borderCountries &&
+            borderCountries.map(borderCountry => (
+              <CountryButton country={borderCountry} bg={countryButtonBg} key={borderCountry.cca2.toLowerCase()} />
+            ))}
+        </Flex>
 
-      {!borderCountries.length && <Box as="span">No Border Countries</Box>}
+        {!isLoading && !borderCountries ? <Box as="span">No Border Countries</Box> : null}
+      </RequestHandler>
     </Box>
   );
 };
@@ -31,7 +50,6 @@ const CountryButton = ({ country, ...props }) => (
     shadow="md"
     h="7"
     px="7"
-    letterSpacing="tighter"
     {...props}
   >
     {country.name.common}

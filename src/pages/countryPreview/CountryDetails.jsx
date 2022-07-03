@@ -55,7 +55,7 @@ export const CountryDetails = ({ country }) => {
 const CountryInfo = ({ title, value, detailsValuesColor }) => {
   return (
     <>
-      <Text letterSpacing="normal" fontWeight="700" fontSize={['13px', null, 'initial']}>
+      <Text fontWeight="700" fontSize={['13px', null, 'initial']}>
         {title}: {''}
         <Box as="span" fontWeight="500" color={detailsValuesColor} title={value}>
           {value}
