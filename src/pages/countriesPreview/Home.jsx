@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { Container, Flex, Grid } from '@chakra-ui/react';
 import { useSearchParams } from 'react-router-dom';
 
@@ -11,37 +11,31 @@ const REGIONS = ['africa', 'americas', 'asia', 'europe', 'oceania'];
 
 export const Home = () => {
   const [searchParams, setSearchParams] = useSearchParams();
-  const filterParams = {
-    query: searchParams.get('query') || '',
-    region: searchParams.get('region') || ''
-  };
 
-  const setQuery = query => setSearchParams({ ...filterParams, query });
-  const setRegion = region => setSearchParams({ ...filterParams, region });
+  const [query, setQuery] = useState(searchParams.get('query') || '');
+  const [region, setRegion] = useState(searchParams.get('region') || '');
 
   const { data: countries, isLoading, isError, error } = useFetch('https://restcountries.com/v3.1/all/');
-  const debouncedQuery = useDebouncedQuery(filterParams.query, 700);
-  const filteredCountries = useFilteredCountries(countries, { query: debouncedQuery, region: filterParams.region });
+  const debouncedQuery = useDebouncedQuery(query, 700);
+  const filteredCountries = useFilteredCountries(countries, { query: debouncedQuery, region });
 
   useEffect(() => {
-    const { query, region } = filterParams;
-    if (!query && !region) setSearchParams({});
+    if (query && region) setSearchParams({ query, region });
     else if (!query && region) setSearchParams({ region: region });
     else if (query && !region) setSearchParams({ query: query });
-
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [filterParams.query, filterParams.region]);
+    else setSearchParams({});
+  }, [query, region, setSearchParams]);
 
   return (
     <Container as="section" mt={[6, null, 12]}>
       <Flex flexDir={['column', null, 'row']} justifyContent="space-between" gap={[10, null, 16]} mb={[8, null, 12]}>
-        <Search setQuery={setQuery} query={filterParams.query} />
+        <Search setQuery={setQuery} query={query} />
 
         <SelectMenu
           options={REGIONS}
           defaultOption="All"
           placeholder="Filter by Region"
-          selected={filterParams.region}
+          selected={region}
           setSelected={setRegion}
         />
       </Flex>
