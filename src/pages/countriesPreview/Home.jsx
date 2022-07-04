@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Container, Flex, Grid } from '@chakra-ui/react';
+import { Center, Container, Flex, Grid } from '@chakra-ui/react';
 import { useSearchParams } from 'react-router-dom';
 
 import { CountryCard } from './';
@@ -27,7 +27,7 @@ export const Home = () => {
   }, [query, region, setSearchParams]);
 
   return (
-    <Container as="section" mt={[6, null, 12]}>
+    <Container as="section" mt={[6, null, 12]} flex="1 1 auto" display="flex" flexDir="column">
       <Flex flexDir={['column', null, 'row']} justifyContent="space-between" gap={[10, null, 16]} mb={[8, null, 12]}>
         <Search setQuery={setQuery} query={query} />
 
@@ -41,15 +41,19 @@ export const Home = () => {
       </Flex>
 
       <RequestHandler isLoading={isLoading} isError={isError} error={error}>
-        <Grid
-          as="section"
-          templateColumns={['1fr', '1fr 1fr', null, 'repeat(3, 1fr)', 'repeat(4, 1fr)']}
-          gap={[4, null, 8, 10, 20]}
-        >
-          {filteredCountries.slice(0, 50).map(country => (
-            <CountryCard key={country.cca2.toLowerCase()} country={country} />
-          ))}
-        </Grid>
+        {filteredCountries.length ? (
+          <Grid
+            as="section"
+            templateColumns={['1fr', '1fr 1fr', null, 'repeat(3, 1fr)', 'repeat(4, 1fr)']}
+            gap={[4, null, 8, 10, 20]}
+          >
+            {filteredCountries.slice(0, 50).map(country => (
+              <CountryCard key={country.cca2.toLowerCase()} country={country} />
+            ))}
+          </Grid>
+        ) : query || region ? (
+          <Center>No results found</Center>
+        ) : null}
       </RequestHandler>
     </Container>
   );

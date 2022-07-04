@@ -8,7 +8,7 @@ const App = () => (
   <>
     <Header />
 
-    <Box as="main">
+    <Box as="main" flex="1 1 auto" display="flex" flexDir="column">
       <Routes>
         <Route path="*" element={<Navigate to="/countries" />} />
         <Route path="/countries" element={<Home />} />

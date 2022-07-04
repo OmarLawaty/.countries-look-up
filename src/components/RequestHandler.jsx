@@ -3,15 +3,11 @@ import { Alert, AlertDescription, AlertIcon, AlertTitle, Flex, Spinner } from '@
 export const RequestHandler = ({ children, isLoading, isError, error }) =>
   isLoading ? (
     <Flex
-      w="100vw"
-      h="100vh"
-      pos="absolute"
-      top="0"
-      left="0"
+      h="full"
       bg="loader"
       flexDir="column"
       justifyContent="center"
-      zIndex="sticky"
+      flex="1 1 auto"
       alignItems="center"
       color="white"
       gap="5"
@@ -19,7 +15,7 @@ export const RequestHandler = ({ children, isLoading, isError, error }) =>
       <Spinner size="xl" />
       Loading
     </Flex>
-  ) : isError && error.code !== 'ERR_CANCELED' ? (
+  ) : isError ? (
     <Alert status="error">
       <AlertIcon />
       <AlertTitle>There is an Error!</AlertTitle>

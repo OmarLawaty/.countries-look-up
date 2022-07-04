@@ -10,7 +10,14 @@ const globalStyles = {
     body: {
       backgroundColor: mode('gray.100', 'blue.800')(props),
       pb: '10',
-      scrollbarGutter: 'stable'
+      scrollbarGutter: 'stable',
+      minH: '100vh'
+    },
+    '#root': {
+      minH: '100vh',
+      w: 'full',
+      display: 'flex',
+      flexDirection: 'column'
     }
   })
 };

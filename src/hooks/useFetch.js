@@ -30,8 +30,11 @@ export const useFetch = (url, params = {}, ignore = false) => {
 
         setData(response);
       } catch (err) {
-        setIsError(true);
-        setError(err);
+        if (!err.code === 'ERR_CANCELLED' || err.response?.data?.message) {
+          setIsError(true);
+          setError(err);
+          return;
+        }
       } finally {
         setIsLoading(false);
       }
