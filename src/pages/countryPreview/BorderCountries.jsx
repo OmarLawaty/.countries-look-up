@@ -1,7 +1,6 @@
 import { Box, Text, Button, Flex, useColorModeValue } from '@chakra-ui/react';
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { RequestHandler } from '../../components';
 import { useFetch } from '../../hooks';
 
 export const BorderCountries = ({ country }) => {
@@ -19,22 +18,14 @@ export const BorderCountries = ({ country }) => {
     <Box fontWeight="700">
       <Text as="span">Border Countries:</Text>
 
-      <RequestHandler isLoading={isLoading}>
-        <Flex
-          display={['flex', null, 'inline-flex']}
-          flexWrap="wrap"
-          gap="2"
-          ml={['0', null, '3']}
-          mt={['4', null, '3']}
-        >
-          {borderCountries &&
-            borderCountries.map(borderCountry => (
-              <CountryButton country={borderCountry} bg={countryButtonBg} key={borderCountry.cca2.toLowerCase()} />
-            ))}
-        </Flex>
+      <Flex display={['flex', null, 'inline-flex']} flexWrap="wrap" gap="2" ml={['0', null, '3']} mt={['4', null, '3']}>
+        {borderCountries &&
+          borderCountries.map(borderCountry => (
+            <CountryButton country={borderCountry} bg={countryButtonBg} key={borderCountry.cca2.toLowerCase()} />
+          ))}
+      </Flex>
 
-        {!isLoading && !borderCountries ? <Box as="span">No Border Countries</Box> : null}
-      </RequestHandler>
+      {!isLoading && !borderCountries ? <Box as="span">No Border Countries</Box> : null}
     </Box>
   );
 };

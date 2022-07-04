@@ -25,9 +25,12 @@ const colors = {
     900: 'hsl(200, 15%, 8%)'
   },
   gray: {
+    50: 'hsla(0, 0%, 52%, 0.6)',
     100: 'hsl(0, 0%, 98%)',
     500: 'hsl(0, 0%, 52%)'
-  }
+  },
+
+  loader: 'hsla(0, 0%, 0%, 0.6)'
 };
 
 // Custom Components
