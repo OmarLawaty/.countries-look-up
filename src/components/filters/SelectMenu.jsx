@@ -22,7 +22,7 @@ export const SelectMenu = ({ options, defaultOption, placeholder = defaultOption
             <SelectOption
               key={option}
               isActive={selected === option}
-              onSelect={() => setSelected(selected => (selected === option ? '' : option))}
+              onSelect={() => setSelected(selected === option ? '' : option)}
             >
               {option}
             </SelectOption>
