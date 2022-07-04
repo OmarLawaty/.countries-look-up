@@ -19,20 +19,21 @@ export const CountryPreview = () => {
         {data.length ? (
           <Flex
             mt={['14', null, '20']}
-            gap={['10', null, '24']}
-            flexDir={['column', null, 'row']}
+            gap={['10', null, null, '24']}
+            flexDir={['column', null, null, 'row']}
             justifyContent="space-between"
+            alignItems="center"
           >
             <a href={country.maps.googleMaps} target="_blank" rel="noreferrer">
               <Image
                 src={country.flags.svg}
-                w={['full', null, '35rem']}
-                h={['14.5rem', null, '25rem']}
+                w={['full', null, null, '35rem']}
+                h={['14.5rem', '25rem']}
                 objectFit="cover"
               />
             </a>
 
-            <Box py={['0', null, '10']} w={['full', null, '38.5rem']}>
+            <Box py={['0', null, '10']} w={['full', null, null, '38.5rem']}>
               <Heading as="h2" fontSize={['22px', null, '32px']} mb={['6', null, '8']}>
                 {country.name.common}
               </Heading>
