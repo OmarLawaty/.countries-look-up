@@ -30,6 +30,7 @@ export const CountryPreview = () => {
                 w={['full', null, null, '35rem']}
                 h={['14.5rem', '25rem']}
                 objectFit="cover"
+                title="See on Google Maps"
               />
             </a>
 

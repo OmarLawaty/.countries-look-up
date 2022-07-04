@@ -4,6 +4,9 @@ import { extendTheme } from '@chakra-ui/react';
 // Global Values
 const globalStyles = {
   global: props => ({
+    '*': {
+      '-webkit-tap-highlight-color': 'transparent'
+    },
     body: {
       backgroundColor: mode('gray.100', 'blue.800')(props),
       pb: '10',
