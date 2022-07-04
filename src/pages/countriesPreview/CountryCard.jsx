@@ -30,16 +30,25 @@ export const CountryCard = ({ country }) => (
       </Heading>
 
       <Box>
-        <Text>
-          Population: <Box as="span">{format(country.population)}</Box>
+        <Text fontWeight="600">
+          Population:{' '}
+          <Box as="span" fontWeight="300">
+            {format(country.population)}
+          </Box>
         </Text>
 
         <Text fontWeight="600">
-          Region: <Box as="span">{country.region}</Box>
+          Region:{' '}
+          <Box as="span" fontWeight="300">
+            {country.region}
+          </Box>
         </Text>
 
-        <Text>
-          Capital: <Box as="span">{country.capital}</Box>
+        <Text fontWeight="600">
+          Capital:{' '}
+          <Box as="span" fontWeight="300">
+            {country.capital}
+          </Box>
         </Text>
       </Box>
     </Box>

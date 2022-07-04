@@ -23,6 +23,7 @@ export const Header = () => {
           fontSize={['14px', null, '24px']}
           pl={['4', null, '5']}
           color={useColorModeValue('black', 'gray.100')}
+          userSelect="none"
         >
           Where in the world?
         </Heading>
