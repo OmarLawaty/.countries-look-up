@@ -14,7 +14,15 @@ export const CountryPreview = () => {
   return (
     <RequestHandler isLoading={isLoading}>
       {isError && !country ? (
-        <Container display="flex" flexDir="column" justifyContent="center" alignItems="center" flex="1 1 auto" gap="5">
+        <Container
+          display="flex"
+          flexDir="column"
+          justifyContent="center"
+          alignItems="center"
+          flex="1 1 auto"
+          gap="5"
+          pb="10"
+        >
           <Box>
             <Box as="span" fontWeight="800">
               {countryCode}

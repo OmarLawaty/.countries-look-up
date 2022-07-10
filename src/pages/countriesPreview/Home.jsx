@@ -27,7 +27,7 @@ export const Home = () => {
   }, [query, region, setSearchParams]);
 
   return (
-    <Container as="section" mt={[6, null, 12]} flex="1 1 auto" display="flex" flexDir="column">
+    <Container as="section" mt={[6, null, 12]} flex="1 1 auto" display="flex" flexDir="column" pb="10">
       <Flex flexDir={['column', null, 'row']} justifyContent="space-between" gap={[10, null, 16]} mb={[8, null, 12]}>
         <Search setQuery={setQuery} query={query} />
 

@@ -9,7 +9,6 @@ const globalStyles = {
     },
     body: {
       backgroundColor: mode('gray.100', 'blue.800')(props),
-      pb: '10',
       scrollbarGutter: 'stable',
       minH: '100vh'
     },
