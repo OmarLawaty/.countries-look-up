@@ -8,7 +8,7 @@ export const useFilteredCountries = (countries, { query, region }) => {
 
     const _countries = countries.filter(
       country =>
-        country.region.toLowerCase().includes(region) && country.name.common.toLowerCase().includes(query.toLowerCase())
+        country.region.toLowerCase().includes(region) && country.name.common.toLowerCase().includes(query.toLowerCase()) && country.name.common.toLowerCase() !== "israel"
     );
     setFilteredCountries(_countries);
   }, [query, region, countries]);

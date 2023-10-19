@@ -13,7 +13,7 @@ export const CountryPreview = () => {
 
   return (
     <RequestHandler isLoading={isLoading}>
-      {isError && !country ? (
+      {(isError && !country) || country?.name.common.toLowerCase() === "israel"? (
         <Container
           display="flex"
           flexDir="column"

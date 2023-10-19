@@ -6,13 +6,15 @@ import { useFetch } from '../../hooks';
 export const BorderCountries = ({ country }) => {
   const countryButtonBg = useColorModeValue('white', 'blue.700');
 
-  const { data: borderCountries, isLoading } = useFetch(
+  const { data, isLoading } = useFetch(
     `https://restcountries.com/v3.1/alpha/`,
     {
       codes: country.borders ? country.borders.join(',') : null
     },
     country.borders ? false : true
   );
+  
+ let  borderCountries = data?.filter((country) => country?.name.common.toLowerCase() !== "israel")
 
   return (
     <Box fontWeight="700">
