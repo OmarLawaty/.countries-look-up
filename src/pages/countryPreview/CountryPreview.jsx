@@ -13,7 +13,7 @@ export const CountryPreview = () => {
 
   return (
     <RequestHandler isLoading={isLoading}>
-      {(isError && !country) || country?.name.common.toLowerCase() === "israel"? (
+      {(isError && !country) || country?.name.common.toLowerCase() === 'israel' ? (
         <Container
           display="flex"
           flexDir="column"
@@ -24,11 +24,17 @@ export const CountryPreview = () => {
           pb="10"
         >
           <Box>
-            <Box as="span" fontWeight="800">
-              {countryCode}
-            </Box>
+            {country?.name.common.toLowerCase() === 'israel' ? (
+              <Box as="span">Did you mean Palestine</Box>
+            ) : (
+              <>
+                <Box as="span" fontWeight="800">
+                  {countryCode}
+                </Box>
 
-            <Box as="span"> is not valid. Please provide a valid country code</Box>
+                <Box as="span"> is not valid. Please provide a valid country code</Box>
+              </>
+            )}
           </Box>
 
           <StyledLink as={Link} to="/country" textDecor="underline">
