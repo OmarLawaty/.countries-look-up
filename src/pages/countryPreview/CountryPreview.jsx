@@ -27,9 +27,9 @@ export const CountryPreview = () => {
             {country?.name.common.toLowerCase() === 'israel' ? (
               <Box as="span">
                 il?! Did you mean{' '}
-                <Link to="/countries/ps" fontWeight="800">
+                <StyledLink as={Link} to="/countries/ps" fontWeight="800">
                   Palestine
-                </Link>
+                </StyledLink>
               </Box>
             ) : (
               <>
@@ -47,7 +47,7 @@ export const CountryPreview = () => {
           </StyledLink>
         </Container>
       ) : (
-        <Container as="section" mt={['10', null, '20']} px="7" p="0 1.75rem">
+        <Container as="section" mt={['10', null, '20']} px="7" p="0 1.75rem 2.5rem">
           <BackButton to="/countries/" />
 
           {data.length ? (

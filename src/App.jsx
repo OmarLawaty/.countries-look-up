@@ -1,4 +1,4 @@
-import { Box } from '@chakra-ui/react';
+import { Flex } from '@chakra-ui/react';
 import { Navigate, Route, Routes } from 'react-router-dom';
 
 import { CountryPreview, Home } from './pages';
@@ -8,14 +8,14 @@ const App = () => (
   <>
     <Header />
 
-    <Box as="main" flex="1 1 auto" display="flex" flexDir="column">
+    <Flex as="main" flex="1 1 auto" flexDir="column">
       <Routes>
         <Route path="*" element={<Navigate to="/countries" />} />
         <Route path="/countries" element={<Home />} />
 
         <Route path="/countries/:code" element={<CountryPreview />} />
       </Routes>
-    </Box>
+    </Flex>
   </>
 );
 
