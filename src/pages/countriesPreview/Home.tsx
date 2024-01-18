@@ -2,12 +2,13 @@ import { useEffect, useState } from 'react';
 import { Center, Container, Flex, Grid } from '@chakra-ui/react';
 import { useSearchParams } from 'react-router-dom';
 
-import { CountryCard } from './';
+import { CountryCard } from '.';
 import { Search, SelectMenu } from '../../components/filters';
 import { RequestHandler } from '../../components';
 import { useFilteredCountries, useDebouncedQuery, useFetch } from '../../hooks';
+import { Country, Regions } from '../../types';
 
-const REGIONS = ['africa', 'americas', 'asia', 'europe', 'oceania'];
+const REGIONS: Regions[] = ['africa', 'americas', 'asia', 'europe', 'oceania'];
 
 export const Home = () => {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -15,9 +16,10 @@ export const Home = () => {
   const [query, setQuery] = useState(searchParams.get('query') || '');
   const [region, setRegion] = useState(searchParams.get('region') || '');
 
-  const { data: countries, isLoading, isError, error } = useFetch('https://restcountries.com/v3.1/all/');
+  const { data: countries, isLoading, isError, error } = useFetch<Country[]>('https://restcountries.com/v3.1/all/');
+
   const debouncedQuery = useDebouncedQuery(query, 700);
-  const filteredCountries = useFilteredCountries(countries, { query: debouncedQuery, region });
+  const filteredCountries = useFilteredCountries({ countries, query: debouncedQuery, region });
 
   useEffect(() => {
     if (query && region) setSearchParams({ query, region });
@@ -41,7 +43,7 @@ export const Home = () => {
       </Flex>
 
       <RequestHandler isLoading={isLoading} isError={isError} error={error}>
-        {filteredCountries.length ? (
+        {filteredCountries?.length ? (
           <Grid
             as="section"
             templateColumns={['1fr', '1fr 1fr', null, 'repeat(3, 1fr)', 'repeat(4, 1fr)']}

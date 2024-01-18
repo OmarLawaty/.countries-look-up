@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router';
 import ThemeSwitcher from './ThemeSwitcher';
 
 export const Header = () => {
-  let navigate = useNavigate();
+  const navigate = useNavigate();
 
   return (
     <Flex w="full" bg={useColorModeValue('white', 'blue.700')} justifyContent="center" shadow="md">

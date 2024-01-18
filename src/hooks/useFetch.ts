@@ -1,11 +1,12 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
+import { ApiError } from '../types';
 
-export const useFetch = (url, params = {}, ignore = false) => {
-  const [data, setData] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
-  const [isError, setIsError] = useState(false);
-  const [error, setError] = useState(null);
+export const useFetch = <DataType>(url: string, params: object = {}, ignore: boolean = false) => {
+  const [data, setData] = useState<DataType | null>(null);
+  const [isLoading, setIsLoading] = useState<boolean>(true);
+  const [isError, setIsError] = useState<boolean>(false);
+  const [error, setError] = useState<ApiError | Error | null>(null);
 
   useEffect(() => {
     if (ignore) {
@@ -17,7 +18,7 @@ export const useFetch = (url, params = {}, ignore = false) => {
     }
 
     setIsLoading(true);
-    let source = axios.CancelToken.source();
+    const source = axios.CancelToken.source();
 
     const getData = async () => {
       try {
@@ -28,13 +29,13 @@ export const useFetch = (url, params = {}, ignore = false) => {
 
         const response = req.data;
 
-        setData(response);
+        if (response) setData(response);
       } catch (err) {
-        if (!err.code === 'ERR_CANCELLED' || err.response?.data?.message) {
-          setIsError(true);
-          setError(err);
-          return;
-        }
+        if ((err as ApiError).code === 'ERR_CANCELED') return;
+
+        setIsError(true);
+        setError(err as ApiError);
+        return;
       } finally {
         setIsLoading(false);
       }

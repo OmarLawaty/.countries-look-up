@@ -1,7 +1,22 @@
 import { Box, Button, Menu, MenuButton, MenuItem, MenuList, useColorModeValue } from '@chakra-ui/react';
 import { ChevronDownIcon } from '@chakra-ui/icons';
+import { Regions } from '../../types';
 
-export const SelectMenu = ({ options, defaultOption, placeholder = defaultOption, selected, setSelected }) => {
+interface SelectMenuProps {
+  options: Regions[];
+  defaultOption: string;
+  placeholder?: string;
+  selected: string;
+  setSelected: React.Dispatch<React.SetStateAction<string>>;
+}
+
+export const SelectMenu = ({
+  options,
+  defaultOption,
+  placeholder = defaultOption,
+  selected,
+  setSelected
+}: SelectMenuProps) => {
   return (
     <Box minH="full" w={['12.5rem', null, '13rem']} bg={useColorModeValue('white', 'blue.700')}>
       <Menu>
@@ -33,7 +48,13 @@ export const SelectMenu = ({ options, defaultOption, placeholder = defaultOption
   );
 };
 
-const SelectOption = ({ children, isActive, onSelect }) => (
+interface SelectOptionProps {
+  children: React.ReactNode;
+  isActive: boolean;
+  onSelect: () => void;
+}
+
+const SelectOption = ({ children, isActive, onSelect }: SelectOptionProps) => (
   <MenuItem
     textTransform="capitalize"
     bg={useColorModeValue(isActive ? 'gray.200' : 'transparent', isActive ? 'blue.800' : 'transparent')}

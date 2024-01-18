@@ -1,20 +1,24 @@
-import { Box, Text, Button, Flex, useColorModeValue } from '@chakra-ui/react';
-import React from 'react';
+import { Box, Text, Button, Flex, useColorModeValue, ButtonProps } from '@chakra-ui/react';
 import { Link } from 'react-router-dom';
 import { useFetch } from '../../hooks';
+import { Country } from '../../types';
 
-export const BorderCountries = ({ country }) => {
+interface BorderProps {
+  country: Country;
+}
+
+export const BorderCountries = ({ country }: BorderProps) => {
   const countryButtonBg = useColorModeValue('white', 'blue.700');
 
-  const { data, isLoading } = useFetch(
+  const { data, isLoading } = useFetch<Country[]>(
     `https://restcountries.com/v3.1/alpha/`,
     {
       codes: country.borders ? country.borders.join(',') : null
     },
     country.borders ? false : true
   );
-  
- let  borderCountries = data?.filter((country) => country?.name.common.toLowerCase() !== "israel")
+
+  const borderCountries = data?.filter(country => country?.name.common.toLowerCase() !== 'israel') ?? [];
 
   return (
     <Box fontWeight="700">
@@ -32,7 +36,11 @@ export const BorderCountries = ({ country }) => {
   );
 };
 
-const CountryButton = ({ country, ...props }) => (
+interface CountryButtonProps extends ButtonProps {
+  country: Country;
+}
+
+const CountryButton = ({ country, ...props }: CountryButtonProps) => (
   <Button
     as={Link}
     to={`/countries/${country.cca2.toLowerCase()}`}

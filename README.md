@@ -47,14 +47,15 @@ yarn install
 To run the development server, execute:
 
 ```bash
-yarn start
+yarn run dev
 ```
 
 ## My process
 
 ### Built with
 
-- [React](https://reactjs.org/) - JS library
+- [React](https://reactjs.org/) - Front-end Framework
+- [TypeScript](https://www.typescriptlang.org/) - JS High-level programming language
 - [Chakra-UI](https://chakra-ui.com) - Css component library
 - [React Router](https://reactrouter.com/) - Client-side routing
 - [Axios](https://axios-http.com/) - Promise based HTTP client
@@ -65,9 +66,10 @@ yarn start
 - [W3schools](w3schools.com/)
 - [stackoverflow](stackoverflow.com/)
 - [MDN Web Docs](https://developer.mozilla.org/en-US/)
+- [ReactJs Docs](https://react.dev/learn)
 
 ## Author
 
 - Name - Omar Mohamed
 - Frontend Mentor - [@OmarLawaty](https://www.frontendmentor.io/profile/OmarLawaty)
-- Twitter - [@OmarLawaty](https://twitter.com/OmarLawaty)
+- Linkedin - [@OmarLawaty](https://linkedin.com/in/omarlawatey)

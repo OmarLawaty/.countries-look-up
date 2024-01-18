@@ -1,7 +1,12 @@
 import { Input, InputGroup, InputLeftElement, useColorModeValue } from '@chakra-ui/react';
 import { SearchIcon } from '@chakra-ui/icons';
 
-export const Search = ({ setQuery, query }) => (
+interface SearchProps {
+  setQuery: React.Dispatch<React.SetStateAction<string>>;
+  query: string;
+}
+
+export const Search = ({ setQuery, query }: SearchProps) => (
   <InputGroup w={['full', null, '30rem']} bg={useColorModeValue('white', 'blue.700')} rounded="base">
     <InputLeftElement h="full" pointerEvents="none" left="4">
       <SearchIcon color={useColorModeValue('gray.900', 'gray.100')} />

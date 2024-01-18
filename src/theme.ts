@@ -1,30 +1,8 @@
 import { mode } from '@chakra-ui/theme-tools';
-import { extendTheme } from '@chakra-ui/react';
-
-// Global Values
-const globalStyles = {
-  global: props => ({
-    '*': {
-      WebkitTapHighlightColor: 'transparent'
-    },
-    body: {
-      backgroundColor: mode('gray.100', 'blue.800')(props),
-      scrollbarGutter: 'stable',
-      minH: '100vh'
-    },
-    '#root': {
-      minH: '100vh',
-      w: 'full',
-      display: 'flex',
-      flexDirection: 'column'
-    }
-  })
-};
+import { extendTheme, StyleFunctionProps } from '@chakra-ui/react';
 
 // Base Values
 const colors = {
-  white: 'hsl(0, 0%, 100%)',
-
   blue: {
     700: 'hsl(209, 23%, 22%)',
     800: 'hsl(207, 26%, 17%)',
@@ -49,11 +27,26 @@ const Container = {
 };
 
 // Configurations
-const config = { initialColorMode: 'light', useSystemColorMode: false };
+const config = { initialColorMode: 'light', useSystemColorMode: true };
 
 export default extendTheme({
   styles: {
-    ...globalStyles
+    global: (props: StyleFunctionProps) => ({
+      '*': {
+        WebkitTapHighlightColor: 'transparent'
+      },
+      body: {
+        backgroundColor: mode('gray.100', 'blue.800')(props),
+        scrollbarGutter: 'stable',
+        minH: '100vh'
+      },
+      '#root': {
+        minH: '100vh',
+        w: 'full',
+        display: 'flex',
+        flexDirection: 'column'
+      }
+    })
   },
   colors,
   fonts: {

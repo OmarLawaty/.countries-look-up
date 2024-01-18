@@ -2,7 +2,11 @@ import { Box, Button, useColorModeValue } from '@chakra-ui/react';
 import { ArrowBackIcon } from '@chakra-ui/icons';
 import { Link } from 'react-router-dom';
 
-export const BackButton = ({ to }) => (
+interface BackButtonProps {
+  to: string;
+}
+
+export const BackButton = ({ to }: BackButtonProps) => (
   <Button
     as={Link}
     to={to}

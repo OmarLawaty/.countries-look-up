@@ -1,8 +1,12 @@
 import { Box, Text, Flex, useColorModeValue } from '@chakra-ui/react';
-import React from 'react';
 import { format } from '../../utils/helpers';
+import { Country } from '../../types';
 
-export const CountryDetails = ({ country }) => {
+interface CountryDetailsProps {
+  country: Country;
+}
+
+export const CountryDetails = ({ country }: CountryDetailsProps) => {
   const detailsValuesColor = useColorModeValue('black', 'gray.200');
 
   return (
@@ -19,25 +23,25 @@ export const CountryDetails = ({ country }) => {
         <CountryInfo
           title="Native Name"
           value={Object.values(country.name.nativeName)[0].common}
-          valueStyles={detailsValuesColor}
+          detailsValuesColor={detailsValuesColor}
         />
-        <CountryInfo title="Population" value={format(country.population)} valueStyles={detailsValuesColor} />
-        <CountryInfo title="Region" value={country.region} valueStyles={detailsValuesColor} />
-        <CountryInfo title="Sub Region" value={country.subregion} valueStyles={detailsValuesColor} />
-        <CountryInfo title="Capital" value={country.capital} valueStyles={detailsValuesColor} />
+        <CountryInfo title="Population" value={format(country.population)} detailsValuesColor={detailsValuesColor} />
+        <CountryInfo title="Region" value={country.region} detailsValuesColor={detailsValuesColor} />
+        <CountryInfo title="Sub Region" value={country.subregion} detailsValuesColor={detailsValuesColor} />
+        <CountryInfo title="Capital" value={country.capital.toString()} detailsValuesColor={detailsValuesColor} />
       </Flex>
 
       <Flex flexDir="column" gap={['3', null, '2']} w="16.8rem">
         <CountryInfo
           title="Top Level Domain"
           value={country.tld ? country.tld[0] : 'N/A'}
-          valueStyles={detailsValuesColor}
+          detailsValuesColor={detailsValuesColor}
         />
 
         <CountryInfo
           title="Currencies"
           value={Object.values(country.currencies)[0].name}
-          valueStyles={detailsValuesColor}
+          detailsValuesColor={detailsValuesColor}
         />
 
         <CountryInfo
@@ -45,14 +49,20 @@ export const CountryDetails = ({ country }) => {
           value={Object.values(country.languages)
             .map(language => language)
             .join(', ')}
-          valueStyles={detailsValuesColor}
+          detailsValuesColor={detailsValuesColor}
         />
       </Flex>
     </Box>
   );
 };
 
-const CountryInfo = ({ title, value, detailsValuesColor }) => {
+interface CountryInfoProps {
+  title: string;
+  value: string;
+  detailsValuesColor: string;
+}
+
+const CountryInfo = ({ title, value, detailsValuesColor }: CountryInfoProps) => {
   return (
     <>
       <Text fontWeight="700" fontSize={['13px', null, 'initial']}>

@@ -1,8 +1,13 @@
 import { Box, Text, Heading, Image, useColorModeValue } from '@chakra-ui/react';
 import { Link } from 'react-router-dom';
-import { format } from '../..//utils/helpers';
+import { format } from '../../utils/helpers';
+import { Country } from '../../types';
 
-export const CountryCard = ({ country }) => (
+interface CountryCardProps {
+  country: Country;
+}
+
+export const CountryCard = ({ country }: CountryCardProps) => (
   <Box
     as={Link}
     to={`/countries/${country.cca2.toLowerCase()}`}
