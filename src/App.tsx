@@ -1,5 +1,5 @@
 import { Flex } from '@chakra-ui/react';
-import { Navigate, Route, Routes } from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom';
 
 import { CountryPreview, Home } from './pages';
 import { Header } from './components';
