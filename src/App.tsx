@@ -10,10 +10,9 @@ const App = () => (
 
     <Flex as="main" flex="1 1 auto" flexDir="column">
       <Routes>
-        <Route path="*" element={<Navigate to="/countries" />} />
-        <Route path="/countries" element={<Home />} />
+        <Route path="/" element={<Home />} />
 
-        <Route path="/countries/:code" element={<CountryPreview />} />
+        <Route path=":code" element={<CountryPreview />} />
       </Routes>
     </Flex>
   </>

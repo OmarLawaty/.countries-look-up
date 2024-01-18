@@ -43,7 +43,7 @@ interface CountryButtonProps extends ButtonProps {
 const CountryButton = ({ country, ...props }: CountryButtonProps) => (
   <Button
     as={Link}
-    to={`/countries/${country.cca2.toLowerCase()}`}
+    to={`/${country.cca2.toLowerCase()}`}
     rounded="base"
     textTransform="capitalize"
     fontSize={['xs', null, 'sm']}

@@ -10,7 +10,7 @@ interface CountryCardProps {
 export const CountryCard = ({ country }: CountryCardProps) => (
   <Box
     as={Link}
-    to={`/countries/${country.cca2.toLowerCase()}`}
+    to={`/${country.cca2.toLowerCase()}`}
     minH="10"
     w="full"
     rounded="base"
