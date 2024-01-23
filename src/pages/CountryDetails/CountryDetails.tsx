@@ -60,7 +60,7 @@ export const CountryDetails = () => {
               mt={['14', null, '20']}
               gap={['10', null, null, '24']}
               flexDir={['column', null, null, 'row']}
-              justifyContent="space-between"
+              // justifyContent="space-between"
               alignItems="center"
             >
               <a href={country?.maps.googleMaps} target="_blank" rel="noreferrer">
