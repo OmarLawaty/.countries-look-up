@@ -58,6 +58,7 @@ yarn run dev
 - [TypeScript](https://www.typescriptlang.org/) - JS High-level programming language
 - [Chakra-UI](https://chakra-ui.com) - Css component library
 - [React Router](https://reactrouter.com/) - Client-side routing
+- [React Query](https://tanstack.com/query/v3/docs/react/overview) - Asynchronous state management
 - [Axios](https://axios-http.com/) - Promise based HTTP client
 - [Countries REST API](https://restcountries.com/) - World Countries API
 
