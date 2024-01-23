@@ -15,8 +15,7 @@ export const BorderCountries = ({ country }: BorderProps) => {
 
   const { data, isLoading, isError, error, isFetching, refetch } = useQuery(
     'countryBorders',
-    async () => await getCountries(country.borders),
-    { enabled: true }
+    async () => await getCountries(country.borders)
   );
 
   useEffect(() => {

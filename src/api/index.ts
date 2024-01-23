@@ -20,6 +20,8 @@ export const getCountry = async (code: string): Promise<Country[] | undefined> =
 };
 
 export const getCountries = async (codes: string[]): Promise<Country[] | undefined> => {
+  if (!codes) return [];
+
   const response = await axios.get(`/alpha?codes=${codes.join(',')}`);
 
   if (response?.data) return response.data;
