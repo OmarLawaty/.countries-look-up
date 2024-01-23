@@ -1,2 +1,2 @@
-export { Home } from './countriesPreview';
-export { CountryPreview } from './countryPreview';
+export * from './Home/Home';
+export * from './CountryDetails/CountryDetails';

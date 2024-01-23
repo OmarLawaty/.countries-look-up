@@ -5,7 +5,7 @@ export interface ApiError {
   stack: string;
 }
 
-export type Regions = 'africa' | 'americas' | 'asia' | 'europe' | 'oceania';
+export type Region = 'africa' | 'americas' | 'asia' | 'europe' | 'oceania';
 
 export interface Country extends ObjectConstructor {
   name: {

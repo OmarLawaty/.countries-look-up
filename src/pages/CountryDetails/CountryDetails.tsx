@@ -1,19 +1,23 @@
 import { Box, Container, Flex, Heading, Image, Link as StyledLink } from '@chakra-ui/react';
 import { Link, useParams } from 'react-router-dom';
 
-import { BackButton, RequestHandler } from '../../components';
-import { BorderCountries, CountryDetails } from '.';
-import { useFetch } from '../../hooks';
-import { Country } from '../../types';
+import { ResponseWrapper, BackButton } from '../../components';
+import { useQuery } from 'react-query';
+import { getCountry } from '../../api';
+import { BorderCountries } from './BorderCountries';
+import { CountryInfo } from './CountryInfo';
 
-export const CountryPreview = () => {
+export const CountryDetails = () => {
   const countryCode = useParams().code;
 
-  const { data, isLoading, isError } = useFetch<Country[]>(`https://restcountries.com/v3.1/alpha/${countryCode}`);
+  const { data, isLoading, isError } = useQuery(['country', countryCode], () =>
+    getCountry(countryCode ? countryCode : '')
+  );
+
   const country = data ? data[0] : null;
 
   return (
-    <RequestHandler isLoading={isLoading}>
+    <ResponseWrapper isLoading={isLoading}>
       {(country === null && isError) || country?.name.common.toLowerCase() === 'israel' ? (
         <Container
           display="flex"
@@ -49,7 +53,7 @@ export const CountryPreview = () => {
         </Container>
       ) : (
         <Container as="section" mt={['10', null, '20']} px="7" p="0 1.75rem 2.5rem">
-          <BackButton to="/" />
+          <BackButton />
 
           {data?.length ? (
             <Flex
@@ -74,7 +78,7 @@ export const CountryPreview = () => {
                   {country?.name.common}
                 </Heading>
 
-                <CountryDetails country={country!} />
+                <CountryInfo country={country!} />
 
                 <BorderCountries country={country!} />
               </Box>
@@ -82,6 +86,6 @@ export const CountryPreview = () => {
           ) : null}
         </Container>
       )}
-    </RequestHandler>
+    </ResponseWrapper>
   );
 };

@@ -1,7 +1,7 @@
 import { Button, useColorMode, useColorModeValue } from '@chakra-ui/react';
 import { MoonIcon, SunIcon } from '@chakra-ui/icons';
 
-const ThemeSwitcher = () => {
+export const ThemeSwitcher = () => {
   const { toggleColorMode } = useColorMode();
 
   return (
@@ -15,5 +15,3 @@ const ThemeSwitcher = () => {
     </Button>
   );
 };
-
-export default ThemeSwitcher;

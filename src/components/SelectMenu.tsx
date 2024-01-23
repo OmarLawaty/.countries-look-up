@@ -1,13 +1,12 @@
 import { Box, Button, Menu, MenuButton, MenuItem, MenuList, useColorModeValue } from '@chakra-ui/react';
 import { ChevronDownIcon } from '@chakra-ui/icons';
-import { Regions } from '../../types';
 
 interface SelectMenuProps {
-  options: Regions[];
+  options: string[];
   defaultOption: string;
   placeholder?: string;
-  selected: string;
-  setSelected: React.Dispatch<React.SetStateAction<string>>;
+  selected: string | null;
+  setSelected: (selected: string | null) => void;
 }
 
 export const SelectMenu = ({
@@ -37,7 +36,7 @@ export const SelectMenu = ({
             <SelectOption
               key={option}
               isActive={selected === option}
-              onSelect={() => setSelected(selected === option ? '' : option)}
+              onSelect={() => setSelected(selected === option ? null : option)}
             >
               {option}
             </SelectOption>
@@ -64,6 +63,7 @@ const SelectOption = ({ children, isActive, onSelect }: SelectOptionProps) => (
     _hover={{
       bg: useColorModeValue(isActive ? 'gray.200' : 'gray.100', isActive ? 'blue.800' : 'gray.500')
     }}
+    transition="background 0.8s "
     onClick={onSelect}
   >
     {children}

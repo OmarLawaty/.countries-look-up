@@ -20,7 +20,7 @@ const colors = {
 // Custom Components
 const Container = {
   baseStyle: {
-    maxW: '8xl',
+    maxW: [null, null, '8xl', '100rem', '110rem'],
     pl: ['4', null, '20'],
     pr: ['4', null, '16']
   }
