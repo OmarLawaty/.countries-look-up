@@ -14,8 +14,12 @@ export const BorderCountries = ({ country }: BorderProps) => {
   const countryButtonBg = useColorModeValue('white', 'blue.700');
 
   const { data, isLoading, isError, error, isFetching, refetch } = useQuery(
-    'countryBorders',
-    async () => await getCountries(country.borders)
+    ['country-borders', country?.cca2.toLowerCase()],
+    async () => await getCountries({ type: 'codes', value: country.borders }),
+    {
+      refetchOnMount: false,
+      refetchOnWindowFocus: false
+    }
   );
 
   useEffect(() => {

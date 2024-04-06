@@ -20,21 +20,21 @@ export const CountryInfo = ({ country }: CountryInfoProps) => {
       mb={['10', null, '16']}
     >
       <Flex flexDir="column" gap={['3', null, '2']} w="16.8rem">
-        <Info title="Native Name" value={Object.values(country.name.nativeName)[0].common} color={color} />
-        <Info title="Population" value={format(country.population)} color={color} />
-        <Info title="Region" value={country.region} color={color} />
-        <Info title="Sub Region" value={country.subregion} color={color} />
-        <Info title="Capital" value={country.capital.join(', ')} color={color} />
+        <Info title="Native Name" value={Object.values(country?.name.nativeName)[0].common} color={color} />
+        <Info title="Population" value={format(country?.population)} color={color} />
+        <Info title="Region" value={country?.region} color={color} />
+        <Info title="Sub Region" value={country?.subregion} color={color} />
+        <Info title="Capital" value={country?.capital?.join(', ')} color={color} />
       </Flex>
 
       <Flex flexDir="column" gap={['3', null, '2']} w="16.8rem">
-        <Info title="Top Level Domain" value={country.tld ? country.tld[0] : 'N/A'} color={color} />
+        <Info title="Top Level Domain" value={country?.tld ? country?.tld[0] : 'N/A'} color={color} />
 
-        <Info title="Currencies" value={Object.values(country.currencies)[0].name} color={color} />
+        <Info title="Currencies" value={Object.values(country?.currencies)[0].name} color={color} />
 
         <Info
           title="Languages"
-          value={Object.values(country.languages)
+          value={Object.values(country?.languages)
             .map(language => language)
             .join(', ')}
           color={color}
