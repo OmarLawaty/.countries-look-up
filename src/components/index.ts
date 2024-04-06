@@ -4,3 +4,4 @@ export * from './Search';
 export * from './SelectMenu';
 export * from './ResponseWrapper';
 export * from './BackButton';
+export * from './BackToTop';

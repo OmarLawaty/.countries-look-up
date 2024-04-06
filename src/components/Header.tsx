@@ -5,6 +5,7 @@ import { ThemeSwitcher } from './';
 
 export const Header = () => {
   const navigate = useNavigate();
+
   return (
     <Flex w="full" bg={useColorModeValue('white', 'blue.700')} justifyContent="center" shadow="md">
       <Container

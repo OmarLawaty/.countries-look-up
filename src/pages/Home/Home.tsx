@@ -6,9 +6,10 @@ import { Filters } from './Filters';
 import { FilterOptions } from './types';
 import { getCountries } from '../../api';
 import { CountryCard } from './CountryCard';
-import { ResponseWrapper } from '../../components';
+import { BackToTop, ResponseWrapper } from '../../components';
 import { ApiError, Region } from '../../types';
 import { useInfiniteScroll } from '../../hooks';
+import { useInView } from 'react-intersection-observer';
 
 export const Home = () => {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -16,6 +17,8 @@ export const Home = () => {
     query: searchParams.get('query') || '',
     region: (searchParams.get('region') as Region) || null
   });
+
+  const { ref: toTopElementRef, inView } = useInView();
 
   const getCurrentCountriesList = () => {
     if (filterOptions.query && filterOptions.region)
@@ -59,6 +62,7 @@ export const Home = () => {
         setRegion={region => {
           setFilterOptions({ ...filterOptions, region });
         }}
+        ref={toTopElementRef}
       />
 
       <ResponseWrapper
@@ -79,6 +83,8 @@ export const Home = () => {
           ))}
         </Grid>
       </ResponseWrapper>
+
+      <BackToTop isElementInView={inView} />
 
       {/* Check if reached the bottom of the page */}
       {!isLoading && hasNextPage && !filterOptions.query && <Box w="100vw" pos="absolute" bottom="20" ref={ref}></Box>}

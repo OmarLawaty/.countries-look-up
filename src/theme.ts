@@ -33,7 +33,8 @@ export default extendTheme({
   styles: {
     global: (props: StyleFunctionProps) => ({
       '*': {
-        WebkitTapHighlightColor: 'transparent'
+        WebkitTapHighlightColor: 'transparent',
+        scrollBehavior: 'smooth'
       },
       body: {
         backgroundColor: mode('gray.100', 'blue.800')(props),
