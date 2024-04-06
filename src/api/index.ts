@@ -1,28 +1,58 @@
 import axios from 'axios';
-import { Country } from '../types';
+
+import { Country, Region } from '../types';
 
 axios.defaults.baseURL = 'https://restcountries.com/v3.1/';
 
-export const getAllCountries = async (): Promise<Country[]> => {
-  let countries: Country[] = [];
+type getCountriesParams =
+  | { type: 'region'; value: Region }
+  | { type: 'name'; value: string }
+  | { type: 'language'; value: string }
+  | { type: 'codes'; value: string[] }
+  | { type: 'region&name'; value: { name: string; region: Region } }
+  | { type: 'all'; value?: string };
 
-  await axios.get('/all').then(response => {
-    if (response?.data) countries = response.data;
-  });
+export const getCountries = async ({ type, value }: getCountriesParams): Promise<Country[] | undefined> => {
+  let res;
 
-  return countries;
-};
+  switch (type) {
+    case 'all':
+      res = {
+        data: (await axios.get('/all')).data.filter(
+          (country: Country) => !country.name.common.toLowerCase().startsWith('isr')
+        )
+      };
+      break;
 
-export const getCountry = async (code: string): Promise<Country[] | undefined> => {
-  const response = await axios.get(`/alpha/${code}`);
+    case 'region':
+      res = await axios.get(`/region/${value}`);
+      break;
 
-  if (response?.data) return response.data;
-};
+    case 'name':
+      try {
+        res = await axios.get(`/name/${value.toLowerCase()}`);
+      } catch (error) {
+        res = { data: [] };
+      }
+      break;
 
-export const getCountries = async (codes: string[]): Promise<Country[] | undefined> => {
-  if (!codes) return [];
+    case 'language':
+      res = await axios.get(`/lang/${value}`);
+      break;
 
-  const response = await axios.get(`/alpha?codes=${codes.join(',')}`);
+    case 'codes':
+      res = await axios.get(`/alpha?codes=${value.join(',')}`);
+      break;
 
-  if (response?.data) return response.data;
+    case 'region&name':
+      res = {
+        data: (await axios.get(`/region/${value.region}`)).data.filter((country: Country) =>
+          country.name.common.toLowerCase().includes(value.name.toLowerCase())
+        )
+      };
+
+      break;
+  }
+
+  return res?.data.filter((country: Country) => !country.name.common.toLowerCase().startsWith('isr'));
 };
