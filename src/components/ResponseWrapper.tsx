@@ -5,12 +5,22 @@ import { ApiError } from '../types';
 interface ResponseWrapperProps {
   children: React.ReactNode;
   isLoading: boolean;
+  isNotFound: boolean;
+  notFoundMessage: React.ReactNode;
   isFetching?: boolean;
   isError?: boolean;
   error?: ApiError | null;
 }
 
-export const ResponseWrapper = ({ children, isLoading, isFetching, isError, error }: ResponseWrapperProps) => {
+export const ResponseWrapper = ({
+  children,
+  isLoading,
+  isNotFound,
+  notFoundMessage,
+  isFetching,
+  isError,
+  error
+}: ResponseWrapperProps) => {
   if (isLoading) return <Loader />;
 
   if (isFetching) {
@@ -22,6 +32,8 @@ export const ResponseWrapper = ({ children, isLoading, isFetching, isError, erro
       </>
     );
   }
+
+  if (isNotFound) return notFoundMessage;
 
   if (isError)
     return (
