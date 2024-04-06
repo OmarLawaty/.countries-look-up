@@ -10,7 +10,7 @@ interface CountryCardProps {
 export const CountryCard = ({ country }: CountryCardProps) => (
   <Box
     as={Link}
-    to={`/${country.cca2.toLowerCase()}`}
+    to={`/${country?.cca2.toLowerCase()}`}
     minH="10"
     w="full"
     rounded="base"
@@ -25,34 +25,34 @@ export const CountryCard = ({ country }: CountryCardProps) => (
       w="full"
       objectFit="cover"
       loading="lazy"
-      src={country.flags.svg}
-      alt={`${country.name.common} Flag`}
+      src={country?.flags.svg}
+      alt={`${country?.name.common} Flag`}
     />
 
     <Box p="6" pb="10">
       <Heading size="md" fontWeight="700" lineHeight="1.4" mb="15">
-        {country.name.common}
+        {country?.name.common}
       </Heading>
 
       <Box>
         <Text fontWeight="600">
           Population:{' '}
           <Box as="span" fontWeight="300">
-            {format(country.population)}
+            {format(country?.population)}
           </Box>
         </Text>
 
         <Text fontWeight="600">
           Region:{' '}
           <Box as="span" fontWeight="300">
-            {country.region}
+            {country?.region}
           </Box>
         </Text>
 
         <Text fontWeight="600">
           Capital:{' '}
           <Box as="span" fontWeight="300">
-            {country.capital}
+            {country?.capital || 'None'}
           </Box>
         </Text>
       </Box>

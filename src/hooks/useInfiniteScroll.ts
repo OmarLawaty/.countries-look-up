@@ -2,30 +2,40 @@ import { useInfiniteQuery } from 'react-query';
 import { useInView } from 'react-intersection-observer';
 import { useEffect } from 'react';
 
-import { Country } from '../types';
+import { Country, Region } from '../types';
 
-export const useInfiniteScroll = (countries: Country[]) => {
+export const useInfiniteScroll = (keyfn: () => Promise<Country[] | undefined>, region: Region | null) => {
   const { ref, inView } = useInView();
 
-  const { data, isLoading, isError, error, isFetching, fetchNextPage, hasNextPage } = useInfiniteQuery(
-    'countries',
-    ({ pageParam = 1 }) => getCountriesByPage(countries, pageParam),
+  const { data, isLoading, isError, error, isFetching, fetchNextPage, refetch, hasNextPage } = useInfiniteQuery(
+    ['countries', region ? region : 'all'],
+    async ({ pageParam = 1 }) => await getCountriesByPage(keyfn(), pageParam),
     {
-      getNextPageParam: (_, allPages) => (allPages.length > 11 ? undefined : allPages.length + 1)
+      refetchOnWindowFocus: false,
+      staleTime: 60000,
+      getNextPageParam: (lastPage, allPages) => (lastPage?.length < 20 ? undefined : allPages.length + 1)
     }
   );
 
   useEffect(() => {
     if (inView && hasNextPage) fetchNextPage();
-  }, [inView, fetchNextPage, hasNextPage, isLoading]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [inView, hasNextPage]);
 
-  const countriesByPage = data ? data.pages.flatMap(page => page) : [];
-
-  return { isLoading, isError, error, isFetching, hasNextPage: !!hasNextPage, countries: countriesByPage, ref };
+  return {
+    isLoading,
+    isError,
+    error,
+    isFetching,
+    hasNextPage: !!hasNextPage,
+    countries: data ? data.pages.flatMap(page => page) : [],
+    ref,
+    refetch
+  };
 };
 
-const getCountriesByPage = (countries: Country[], page: number = 1): Country[] => {
-  const filteredCountries = countries?.filter((_, index) => index <= page * 20 - 1 && index >= (page - 1) * 20);
+const getCountriesByPage = async (countries: Promise<Country[] | undefined>, page: number = 1): Promise<Country[]> => {
+  const filteredCountries = (await countries)?.filter((_, index) => index <= page * 20 - 1 && index >= (page - 1) * 20);
 
   return filteredCountries ? filteredCountries : [];
 };

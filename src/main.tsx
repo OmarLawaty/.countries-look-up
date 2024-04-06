@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom/client';
 import { BrowserRouter } from 'react-router-dom';
 import { ChakraProvider, ColorModeScript } from '@chakra-ui/react';
 import { QueryClient, QueryClientProvider } from 'react-query';
+import { ReactQueryDevtools } from 'react-query/devtools';
 
 import App from './App.tsx';
 import theme from './theme';
@@ -17,6 +18,8 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
           <ColorModeScript initialColorMode={theme.config.initialColorMode} />
 
           <App />
+
+          <ReactQueryDevtools initialIsOpen={false} position="bottom-right" />
         </ChakraProvider>
       </BrowserRouter>
     </QueryClientProvider>

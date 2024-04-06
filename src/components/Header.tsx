@@ -2,13 +2,9 @@ import { Container, Flex, Heading, useColorModeValue } from '@chakra-ui/react';
 import { useNavigate } from 'react-router';
 
 import { ThemeSwitcher } from './';
-import { useSearchParams } from 'react-router-dom';
 
 export const Header = () => {
   const navigate = useNavigate();
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const [_, setSearchParams] = useSearchParams();
-
   return (
     <Flex w="full" bg={useColorModeValue('white', 'blue.700')} justifyContent="center" shadow="md">
       <Container
@@ -24,7 +20,6 @@ export const Header = () => {
           as="h1"
           cursor="pointer"
           onClick={() => {
-            setSearchParams({});
             navigate('/');
           }}
           fontSize={['14px', null, '24px']}
