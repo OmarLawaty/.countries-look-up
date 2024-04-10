@@ -1,12 +1,12 @@
+import { useEffect } from 'react';
+import { useQuery } from 'react-query';
 import { Box, Container, Flex, Heading, Image, Link as StyledLink } from '@chakra-ui/react';
 import { Link, useParams } from 'react-router-dom';
 
 import { ResponseWrapper, BackButton } from '../../components';
-import { useQuery } from 'react-query';
 import { getCountries } from '../../api';
 import { BorderCountries } from './BorderCountries';
 import { CountryInfo } from './CountryInfo';
-import { useEffect } from 'react';
 
 export const CountryDetails = () => {
   const countryCode = useParams().code;

@@ -30,7 +30,11 @@ export const getCountries = async ({ type, value }: getCountriesParams): Promise
 
     case 'name':
       try {
-        res = await axios.get(`/name/${value.toLowerCase()}`);
+        res = {
+          data: (await axios.get(`/name/${value.toLowerCase()}`)).data.filter((country: Country) =>
+            country.name.common.toLowerCase().includes(value.toLowerCase())
+          )
+        };
       } catch (error) {
         res = { data: [] };
       }
