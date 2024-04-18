@@ -35,7 +35,7 @@ export const BorderCountries = ({ country }: BorderProps) => {
       <Flex display={['flex', null, 'inline-flex']} flexWrap="wrap" gap="2" ml={['0', null, '3']} mt={['4', null, '3']}>
         {isLoading || isFetching ? (
           'Loading...'
-        ) : isError ? (
+        ) : isError && borderCountries.length ? (
           <Box as="span">Error: {(error as ApiError)?.message}</Box>
         ) : (
           borderCountries?.map(borderCountry => (

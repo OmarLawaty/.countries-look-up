@@ -13,6 +13,8 @@ type getCountriesParams =
   | { type: 'all'; value?: string };
 
 export const getCountries = async ({ type, value }: getCountriesParams): Promise<Country[] | undefined> => {
+  if (type === 'codes' && !value) return undefined;
+
   let res;
 
   switch (type) {
@@ -45,7 +47,7 @@ export const getCountries = async ({ type, value }: getCountriesParams): Promise
       break;
 
     case 'codes':
-      res = await axios.get(`/alpha?codes=${value.join(',')}`);
+      res = await axios.get(`/alpha?codes=${value?.join(',')}`);
       break;
 
     case 'region&name':

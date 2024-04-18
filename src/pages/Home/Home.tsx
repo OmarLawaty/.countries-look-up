@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Box, Center, Container, Grid } from '@chakra-ui/react';
 import { useSearchParams } from 'react-router-dom';
+import { useInView } from 'react-intersection-observer';
 
 import { Filters } from './Filters';
 import { FilterOptions } from './types';
@@ -9,7 +10,6 @@ import { CountryCard } from './CountryCard';
 import { BackToTop, ResponseWrapper } from '../../components';
 import { ApiError, Region } from '../../types';
 import { useInfiniteScroll } from '../../hooks';
-import { useInView } from 'react-intersection-observer';
 
 export const Home = () => {
   const [searchParams, setSearchParams] = useSearchParams();
