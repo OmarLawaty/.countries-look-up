@@ -1,4 +1,4 @@
-import axios from 'axios';
+import axios, { type AxiosResponse } from 'axios';
 
 import { Country, Region } from '../types';
 
@@ -20,9 +20,13 @@ export const getCountries = async ({ type, value }: getCountriesParams): Promise
   switch (type) {
     case 'all':
       res = {
-        data: (await axios.get('/all')).data.filter(
-          (country: Country) => !country.name.common.toLowerCase().startsWith('isr')
-        )
+        data: (
+          await axios.get<Country[], AxiosResponse<Country[]>>('/all', {
+            params: {
+              fields: 'cca2,flags,name,population,region,capital',
+            },
+          })
+        ).data.filter((country: Country) => !country.name.common.toLowerCase().startsWith('isr')),
       };
       break;
 
@@ -35,7 +39,7 @@ export const getCountries = async ({ type, value }: getCountriesParams): Promise
         res = {
           data: (await axios.get(`/name/${value.toLowerCase()}`)).data.filter((country: Country) =>
             country.name.common.toLowerCase().includes(value.toLowerCase())
-          )
+          ),
         };
       } catch (error) {
         res = { data: [] };
@@ -54,7 +58,7 @@ export const getCountries = async ({ type, value }: getCountriesParams): Promise
       res = {
         data: (await axios.get(`/region/${value.region}`)).data.filter((country: Country) =>
           country.name.common.toLowerCase().includes(value.name.toLowerCase())
-        )
+        ),
       };
 
       break;
